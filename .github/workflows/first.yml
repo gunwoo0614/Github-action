@@ -13,10 +13,10 @@ jobs:                    # 실행할 작업(Job)들을 정의하는 영역
         uses: actions/checkout@v3      # 공식 checkout 액션을 사용하여 코드 다운로드
 
       - name: Build                    # Build 단계 (소스 코드를 컴파일)
-        run: gcc main.c -o main       # gcc 컴파일러로 main.c를 컴파일하여 main 실행파일 생성
+        run: gcc main.c plus.c -o main.exe       # gcc 컴파일러로 main.c를 컴파일하여 main 실행파일 생성
 
       - name: Test                     # Test 단계 (프로그램 실행을 통해 정상 동작 확인)
-        run: ./main                   # 생성된 실행파일 main을 실행
+        run: .\main.exe                # 생성된 실행파일 main을 실행
 
       - name: Deploy                   # Deploy 단계 (배포 단계, 현재는 예시)
         run: echo "Deploy completed"  # 실제 배포 대신 배포 완료 메시지를 출력
