@@ -4,11 +4,12 @@
 int main(void)
 {
     
-    int a = 3;
+    double a = 3.1;
     int b = 5;
     int c = plus(a, b);
 
     printf("%d\n", c);
     return 0;
 }
+
 
