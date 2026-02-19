@@ -1,22 +1,18 @@
 name: Our First Workflow
 
-on: push                 # GitHub 저장소에 코드가 push될 때마다 이 Workflow를 실행
+on: push
 
-jobs:                    # 실행할 작업(Job)들을 정의하는 영역
-  build-test-deploy:    # Job의 이름 (Build, Test, Deploy를 수행하는 작업)
+jobs:
+  build-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
 
-    runs-on: windows-latest   # windows 최신 버전의 가상환경에서 Job을 실행
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
 
-    steps:              # Job 안에서 실행할 단계(Step)들의 목록
+      - name: Build
+        run: cl /nologo /W4 /EHsc main.c plus.c /Fe:main.exe
 
-      - name: Checkout source code      # GitHub 저장소의 소스 코드를 가상환경으로 가져오는 단계
-        uses: actions/checkout@v3      # 공식 checkout 액션을 사용하여 코드 다운로드
-
-      - name: Build                    # Build 단계 (소스 코드를 컴파일)
-        run: gcc main.c plus.c -o main.exe       # gcc 컴파일러로 main.c를 컴파일하여 main 실행파일 생성
-
-      - name: Test                     # Test 단계 (프로그램 실행을 통해 정상 동작 확인)
-        run: .\main.exe                # 생성된 실행파일 main을 실행
-
-      - name: Deploy                   # Deploy 단계 (배포 단계, 현재는 예시)
-        run: echo "Deploy completed"  # 실제 배포 대신 배포 완료 메시지를 출력
+      - name: Test
+        run: .\main.exe
