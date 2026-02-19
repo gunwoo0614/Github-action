@@ -1,0 +1,6 @@
+#pragma once
+#ifdef PLUS_H
+
+int plus(int a, int b);
+
+#endif 
