@@ -7,7 +7,9 @@ int main(void)
     int c = plus(a, b);
     printf("%d\n", c);
     return 0;
+    
 }
+
 
 
 
